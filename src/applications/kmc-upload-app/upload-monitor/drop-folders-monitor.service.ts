@@ -207,7 +207,6 @@ export class DropFoldersMonitorService implements OnDestroy {
             this._totals.state.next({ loading: false, error: false });
             this._initializeState = 'succeeded';
 
-            this._updateServerQueryUploadedOnFilter();
             this._startPolling();
           },
           (error) => {
@@ -224,15 +223,6 @@ export class DropFoldersMonitorService implements OnDestroy {
         );
     } else {
       this._logger.info(`everything is operating normally, no need to re-initialize`);
-    }
-  }
-
-  private _updateServerQueryUploadedOnFilter(): void {
-    const oldestUploadedOnFile = this._getTrackedFiles().reduce((acc, item) => !acc || item.uploadedOn < acc.uploadedOn ? item : acc, null);
-    const uploadedOnFrom = oldestUploadedOnFile ? oldestUploadedOnFile.uploadedOn : this._browserService.sessionStartedAt;
-    if (this._dropFolderChangesFactory.uploadedOn !== uploadedOnFrom) {
-      this._logger.debug(`updating poll server query request with uploadedOn from ${uploadedOnFrom && uploadedOnFrom.toString()}`);
-      this._dropFolderChangesFactory.uploadedOn = uploadedOnFrom;
     }
   }
 
@@ -256,7 +246,6 @@ export class DropFoldersMonitorService implements OnDestroy {
           if (serverFiles.length > 0) {
             this._cleanDeletedUploads(serverFiles);
             this._updateTrackedFilesFromServer(serverFiles);
-            this._updateServerQueryUploadedOnFilter();
             this._updateAllowPurgingMode();
             this._totals.data.next(this._calculateTotalsFromState());
           } else {

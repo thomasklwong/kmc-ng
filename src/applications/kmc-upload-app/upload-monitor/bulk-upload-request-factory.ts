@@ -7,12 +7,6 @@ import { RequestFactory } from '@kaltura-ng/kaltura-common';
 import { KalturaBulkUploadListResponse } from 'kaltura-ngx-client';
 
 export class BulkUploadRequestFactory implements RequestFactory<BulkListAction, KalturaBulkUploadListResponse> {
-
-  public uploadedOn: Date;
-
-  constructor() {
-  }
-
   create(): BulkListAction {
     const bulkUploadObjectTypeIn = [
       KalturaBulkUploadObjectType.entry,
@@ -21,20 +15,16 @@ export class BulkUploadRequestFactory implements RequestFactory<BulkListAction, 
       KalturaBulkUploadObjectType.categoryUser
     ];
 
-    if (this.uploadedOn === null) {
-      return null;
-    } else {
-      return new BulkListAction({
-        bulkUploadFilter: new KalturaBulkUploadFilter({
+    return new BulkListAction({
+      bulkUploadFilter: new KalturaBulkUploadFilter({
+          orderBy: 'uploadedOn',
           bulkUploadObjectTypeIn: bulkUploadObjectTypeIn.join(','),
-          uploadedOnGreaterThanOrEqual: this.uploadedOn
-        })
-      }).setRequestOptions({
-          responseProfile: new KalturaDetachedResponseProfile({
-              type: KalturaResponseProfileType.includeFields,
-              fields: 'id,status,uploadedOn'
-          })
-      });
-    }
+      })
+    }).setRequestOptions({
+      responseProfile: new KalturaDetachedResponseProfile({
+          type: KalturaResponseProfileType.includeFields,
+          fields: 'id,status,uploadedOn'
+      })
+    });
   }
 }
