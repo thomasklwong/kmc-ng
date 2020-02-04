@@ -66,7 +66,6 @@ export class PreviewEmbedService {
 	generateV3EmbedCode(config: any, isPreview: boolean): string {
 	    let code = '';
         const rnd = Math.floor(Math.random() * 1000000000);
-        console.log(config.playerConfig);
         switch (config.embedType) {
             case 'dynamic':
             case 'thumb':
