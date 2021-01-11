@@ -103,7 +103,7 @@ $ npm run build -- --prod
 A distributed standalone application will be created in the `dist/` folder.
 
 ### External (standalone) applications integrations
-The KMC integrates several standalone applications using iFrames. It contains a dedicated bridge component responsible for the communication with between the KMC shell and standalone application. External applications are not part of the KMC deployment process, they are configured at runtime by the server as part of the configuration file `server-config.json`. Read [src/__local_machine_only__/README.md](./src/__local_machine_only__/README.md) to learn more about standalone applications integration.
+The KMC integrates several standalone applications using iFrames. It contains a dedicated bridge component responsible for the communication with between the KMC shell and standalone application. External applications are not part of the KMC deployment process, they are configured at runtime by the server as part of the configuration file `server-config.json`. Read [src/\_\_local_machine_only\_\_/README.md](./src/__local_machine_only__/README.md) to learn more about standalone applications integration.
 
 
 ### Configuring the server
