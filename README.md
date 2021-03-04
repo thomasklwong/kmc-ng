@@ -1,3 +1,4 @@
+
 # KMCng Application
 ![Current phase](https://img.shields.io/badge/Current_Phase-Heavy_Development-red.svg)
 [![Gitter chat](https://badges.gitter.im/kaltura-ng/kmc-ng.png)](https://gitter.im/kaltura-ng/kmc-ng)
